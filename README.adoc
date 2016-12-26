@@ -1,5 +1,5 @@
 # Spring Cloud Test
-testing cloud stack
+Toutes les applications sont faites avec `Spring Boot` et embarque `spring-boot-actuator`
 
 == Config Server
 Mise en place d'un serveur qui centralise et externalise la configuration.
@@ -7,12 +7,28 @@ Le serveur tourne par défaut  sur le port `8888`.
 Ses clés de configuration sont hébergées sur un dépôt Git https://github.com/pomverte/spring-cloud-config-repo.
 On a donc une externalisation et un versionning de la configuration.
 
-Visualiser la configuration du service `foo-service` :
- http://localhost:8888/foo-service/default
+Visualiser la configuration des services par leurs noms :
 
-NOTE: résolution et surcharge de fichier de configuration. On charge d'abord `application.properties` puis `foo-service.properties`
+- http://localhost:8888/foo-service/default
+- http://localhost:8888/discovery-service/default
+- http://localhost:8888/discovery-service/peer1
+- http://localhost:8888/discovery-service/peer2
+
+TIPS: Il y a un mécanisme de surcharge de fichier de configuration (par défault, par service, par profil)
 
 Rechargement de la configuration :
+
  curl -d{} http://localhost:8080/refresh
 
 NOTE: TODO trouver comment faire pour un trigger de refresh de configuration par événement
+
+== Foo Service
+Une application qui va charger sa configuration depuis le config server.
+
+== Discovery Service
+Un `Service Registry` répliqué qui charge sa configuration depuis le config server via 2 profils Spring : `peer1` et `peer2`
+
+Interface d'administration du Discovery Service (Eureka)
+
+- http://localhost:8761
+- http://localhost:8762
