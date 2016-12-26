@@ -1,4 +1,7 @@
 # Spring Cloud Test
+
+:toc:
+
 Toutes les applications sont faites avec `Spring Boot` et embarque `spring-boot-actuator`
 
 == Config Server
