@@ -1,0 +1,3 @@
+= Config Server
+
+http://localhost:8888/foo-service/default
