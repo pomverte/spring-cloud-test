@@ -17,7 +17,7 @@ Visualiser la configuration des services par leurs noms :
 - http://localhost:8888/discovery-service/peer1
 - http://localhost:8888/discovery-service/peer2
 
-TIPS: Il y a un mécanisme de surcharge de fichier de configuration (par défault, par service, par profil)
+TIP: Il y a un mécanisme de surcharge de fichier de configuration (par défault, par service, par profil)
 
 Rechargement de la configuration :
 
