@@ -35,7 +35,9 @@
 
   <modules>
     <module>config-server</module>
+    <module>discovery-service</module>
     <module>foo-service</module>
+    <module>bar-service</module>
   </modules>
 
 </project>
