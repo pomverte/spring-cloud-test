@@ -1,0 +1,18 @@
+# Spring Cloud Test
+testing cloud stack
+
+== Config Server
+Mise en place d'un serveur qui centralise et externalise la configuration.
+Le serveur tourne par défaut  sur le port `8888`.
+Ses clés de configuration sont hébergées sur un dépôt Git https://github.com/pomverte/spring-cloud-config-repo.
+On a donc une externalisation et un versionning de la configuration.
+
+Visualiser la configuration du service `foo-service` :
+ http://localhost:8888/foo-service/default
+
+NOTE: résolution et surcharge de fichier de configuration. On charge d'abord `application.properties` puis `foo-service.properties`
+
+Rechargement de la configuration :
+ curl -d{} http://localhost:8080/refresh
+
+NOTE: TODO trouver comment faire pour un trigger de refresh de configuration par événement
