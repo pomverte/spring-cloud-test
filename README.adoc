@@ -25,6 +25,8 @@ NOTE: TODO trouver comment faire pour un trigger de refresh de configuration par
 == Foo Service
 Une application qui va charger sa configuration depuis le config server.
 
+ http://localhost:8080/message
+
 == Discovery Service
 Un `Service Registry` répliqué qui charge sa configuration depuis le config server via 2 profils Spring : `peer1` et `peer2`
 
