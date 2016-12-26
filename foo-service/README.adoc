@@ -1,0 +1,5 @@
+= Foo Service
+
+http://localhost:8080/message
+
+curl POST http://localhost:8080/refresh
