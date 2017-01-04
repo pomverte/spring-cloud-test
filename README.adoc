@@ -30,6 +30,8 @@ Une application qui va charger sa configuration depuis le config server.
 
  http://localhost:8080/message
 
+NOTE: TODO mise en place d'un fallback si le config serveur ne répond pas (config par défaut embarquée dans l'application ?)
+
 == Discovery Service
 Un `Service Registry` répliqué qui charge sa configuration depuis le config server via 2 profils Spring : `peer1` et `peer2`
 
