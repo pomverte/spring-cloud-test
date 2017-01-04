@@ -23,7 +23,12 @@ Rechargement de la configuration :
 
  curl -d{} http://localhost:8080/refresh
 
-NOTE: TODO trouver comment faire pour un trigger de refresh de configuration par événement
+[NOTE]
+===
+
+- trouver comment faire pour un trigger de refresh de configuration par événement
+- metre de la redondance sur ce service pour éviter un SPOF
+===
 
 == Foo Service
 Une application qui va charger sa configuration depuis le config server.
