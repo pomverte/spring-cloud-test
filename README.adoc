@@ -7,8 +7,8 @@ Toutes les applications sont faites avec `Spring Boot` et embarque `spring-boot-
 == Config Server
 Mise en place d'un serveur qui centralise et externalise la configuration.
 Le serveur tourne par défaut  sur le port `8888`.
-Ses clés de configuration sont hébergées sur un dépôt Git https://github.com/pomverte/spring-cloud-config-repo.
-On a donc une externalisation et un versionning de la configuration.
+Ses clés de configuration sont hébergées sur un dépôt Git https://github.com/pomverte/spring-cloud-config-repo[spring-cloud-config-repo].
+On a donc une *externalisation*, une *centralisation* et un *versionning* de la configuration.
 
 Visualiser la configuration des services par leurs noms :
 
@@ -26,7 +26,7 @@ Rechargement de la configuration :
 [NOTE]
 ====
 
-- trouver comment faire pour un trigger de refresh de configuration par événement
+- trouver comment faire pour un trigger de refresh de configuration par événement => http://cloud.spring.io/spring-cloud-bus/[spring-cloud-bus] ?
 - metre de la redondance sur ce service pour éviter un SPOF
 ====
 
