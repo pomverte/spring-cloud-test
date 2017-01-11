@@ -33,7 +33,9 @@ Rechargement de la configuration :
 == Foo Service
 Une application qui va charger sa configuration depuis le config server.
 
-- http://localhost:8080/message
+- http://localhost:****/message
+
+WARNING: via la configuration par défaut le port est aléatoire `server.port = 0`
 
 NOTE: TODO mise en place d'un fallback si le config serveur ne répond pas (config par défaut embarquée dans l'application ?)
 
