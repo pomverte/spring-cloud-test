@@ -1,14 +1,19 @@
-# Spring Cloud Test
+= Spring Cloud Test
 
 :toc:
 
-Toutes les applications sont faites avec `Spring Boot` et embarque `spring-boot-actuator`
+Toutes les applications sont faites avec `Spring Boot`, embarquent `spring-boot-actuator`
+et sont générées via http://start.spring.io/
 
 == Config Server
 Mise en place d'un serveur qui centralise et externalise la configuration.
 Le serveur tourne par défaut  sur le port `8888`.
 Ses clés de configuration sont hébergées sur un dépôt Git https://github.com/pomverte/spring-cloud-config-repo[spring-cloud-config-repo].
 On a donc une *externalisation*, une *centralisation* et un *versionning* de la configuration.
+
+.Création du serveur de configuration de manière déclarative
+[source,java]
+include::config-server/src/main/java/fr/pomverte/ConfigServerApplication.java[tags=asciidoc-EnableConfigServer]
 
 Visualiser la configuration des services par leurs noms :
 
@@ -23,12 +28,7 @@ Rechargement de la configuration :
 
  curl -d{} http://localhost:8080/refresh
 
-[NOTE]
-====
-
-- trouver comment faire pour un trigger de refresh de configuration par événement => http://cloud.spring.io/spring-cloud-bus/[spring-cloud-bus] ?
-- metre de la redondance sur ce service pour éviter un SPOF
-====
+NOTE: mettre de la redondance sur ce service pour éviter un SPOF
 
 == Foo Service
 Une application qui va charger sa configuration depuis le config server.
@@ -38,6 +38,26 @@ Une application qui va charger sa configuration depuis le config server.
 WARNING: via la configuration par défaut le port est aléatoire `server.port = 0`
 
 NOTE: TODO mise en place d'un fallback si le config serveur ne répond pas (config par défaut embarquée dans l'application ?)
+
+== Push de configuration
+Dans une architecture micro service, on a plusieurs instance du même service.
+Comment rafraichir la configuration de toutes les instances d'un même service ?
+
+. Mettre à disposition un message broker.
+Dans cet exemple, j'utilise RabbitMQ dans un conteneur Docker :
+https://github.com/pomverte/docker-compose/tree/master/rabbitmq
+. Ajouter la dépendance maven
+[source,xml]
+include::config-server/pom.xml[tags=asciidoc-spring-cloud-starter-bus-amqp]
+. Lancer les services
+.. config-server
+.. foo-service
+.. foo-service (une deuxième instance)
+. Modifier la configuration d'un clé de l'application
+https://github.com/pomverte/spring-cloud-config-repo/blob/master/foo-service.properties[foo-service.properties]
+. Forcer le refresh de la configuration
+
+ curl -X POST http://localhost:8888/bus/refresh?destination=foo-service
 
 == Discovery Service
 Un `Service Registry` répliqué qui charge sa configuration depuis le config server via 2 profils Spring : `peer1` et `peer2`
