@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: games-of-thrones-service
+  jmx:
+    enabled: false
+
+  # DATABASE
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  h2:
+    console:
+      enabled: true
+  datasource:
+    platform: h2
+    #url: jdbc:h2:file:~/test
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+
+management:
+  security:
+    enabled: false
+
+# DATABASE WITH FLYWAY
+flyway:
+  enable: true
+  schemas: PUBLIC
+
+# EUREKA DISCOVERY CLIENT
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+  instance:
+    hostname: localhost
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+    preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${server.port}

@@ -1,0 +1,12 @@
+= GoT Service
+
+== Checking
+
+- http//localhost:8080/flyway
+- http//localhost:8080/h2-console
+-- jdbc:h2:mem:testdb
+
+== Data REST access
+
+- http://localhost:8080/houses?sort=name
+- http://localhost:8080/houses/1

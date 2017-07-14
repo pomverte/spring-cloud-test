@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: eureka-service
+  jmx:
+    enabled: false
+management:
+  security:
+    enabled: false
+
+eureka:
+  environment: dev
+  datacenter: local-dev
+  enableSelfPreservation: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+  instance:
+    hostname: localhost
+#    statusPageUrlPath: ${management.contextPath}/info
+#    healthCheckUrlPath: ${management.contextPath}/health
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+    preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${server.port}
